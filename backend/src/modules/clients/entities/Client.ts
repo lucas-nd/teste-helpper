@@ -7,6 +7,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import Address from './Address';
+import Phone from './Phone';
 
 @Entity('clients')
 class Client {
@@ -22,10 +23,10 @@ class Client {
   @Column()
   cpfCnpj: string;
 
-  @Column()
-  phone: string;
+  @OneToMany(() => Phone, (phone) => phone.client, { cascade: true })
+  phone: Phone[];
 
-  @OneToMany((type) => Address, (address) => address.client, { cascade: true })
+  @OneToMany(() => Address, (address) => address.client, { cascade: true })
   address: Address[];
 
   @CreateDateColumn({ type: 'timestamp' })

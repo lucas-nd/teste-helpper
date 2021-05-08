@@ -9,8 +9,8 @@ import {
 } from 'typeorm';
 import Client from './Client';
 
-@Entity('address')
-class Address {
+@Entity('phones')
+class Phone {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -22,22 +22,7 @@ class Address {
   client: Client;
 
   @Column()
-  cep: string;
-
-  @Column()
-  logradouro: string;
-
-  @Column()
   number: string;
-
-  @Column()
-  district: string;
-
-  @Column()
-  city: string;
-
-  @Column()
-  state: string;
 
   @CreateDateColumn({ type: 'timestamp' })
   created_at: Date;
@@ -46,4 +31,4 @@ class Address {
   updated_at: Date;
 }
 
-export default Address;
+export default Phone;

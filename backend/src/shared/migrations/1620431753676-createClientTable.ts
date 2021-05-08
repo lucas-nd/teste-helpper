@@ -16,7 +16,6 @@ export class createClientTable1620431753676 implements MigrationInterface {
           { name: 'name', type: 'varchar' },
           { name: 'email', type: 'varchar', isUnique: true },
           { name: 'cpfCnpj', type: 'varchar' },
-          { name: 'phone', type: 'varchar' },
           {
             name: 'created_at',
             type: 'timestamp',

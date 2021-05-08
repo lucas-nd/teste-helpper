@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import Client from './modules/clients/entities/Client';
 import Address from './modules/clients/entities/Address';
 import { ConfigModule } from '@nestjs/config';
+import Phone from './modules/clients/entities/Phone';
 
 @Module({
   imports: [
@@ -15,9 +16,9 @@ import { ConfigModule } from '@nestjs/config';
       username: process.env.TYPEORM_USERNAME,
       password: process.env.TYPEORM_PASSWORD,
       database: process.env.TYPEORM_DATABASE,
-      entities: [Client, Address],
+      entities: [Client, Address, Phone],
     }),
-    TypeOrmModule.forFeature([Client, Address]),
+    TypeOrmModule.forFeature([Client, Address, Phone]),
     ClientsModule,
   ],
   controllers: [],

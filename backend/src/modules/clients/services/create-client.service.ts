@@ -31,7 +31,7 @@ export class CreateClientService {
       name,
       email,
       cpfCnpj,
-      phone,
+      phone: [phone],
       address: [address],
     });
 
