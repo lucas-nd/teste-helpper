@@ -1,12 +1,24 @@
-import { Controller, Get } from '@nestjs/common';
-import { ClientsService } from '../services/clients.service';
+import { Body, Controller, Post } from '@nestjs/common';
+import ICreateClientDTO from '../dtos/ICreateClientDTO';
+import { CreateClientService } from '../services/create-client.service';
 
 @Controller()
 export class ClientsController {
-  constructor(private readonly appService: ClientsService) {}
+  constructor(private createClientService: CreateClientService) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @Post()
+  createClient(
+    @Body()
+    { name, email, cpfCnpj, phone, address }: ICreateClientDTO,
+  ) {
+    const client = this.createClientService.execute({
+      name,
+      email,
+      cpfCnpj,
+      phone,
+      address,
+    });
+
+    return client;
   }
 }
