@@ -23,9 +23,9 @@ class Client {
   cpfCnpj: string;
 
   @Column()
-  telefone: string;
+  phone: string;
 
-  @OneToMany(() => Address, (address) => address.client)
+  @OneToMany((type) => Address, (address) => address.client, { cascade: true })
   address: Address[];
 
   @CreateDateColumn({ type: 'timestamp' })

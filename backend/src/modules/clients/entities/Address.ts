@@ -17,8 +17,8 @@ class Address {
   @Column()
   client_id: string;
 
-  @ManyToOne(() => Client, (client) => client.address)
-  @JoinColumn({ name: 'client_id' })
+  @ManyToOne((type) => Client, (client) => client.address)
+  @JoinColumn({ name: 'client_id', referencedColumnName: 'id' })
   client: Client;
 
   @Column()
