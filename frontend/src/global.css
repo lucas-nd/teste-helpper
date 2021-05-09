@@ -29,3 +29,12 @@ button, input{
 button{
     cursor: pointer;
 }
+
+
+::-webkit-scrollbar {
+    width: 0px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: white;
+  }
