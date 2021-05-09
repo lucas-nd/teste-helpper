@@ -6,7 +6,7 @@ const Container = styled.div`
 
   padding: 42px;
 
-  height: 500px;
+  height: 300px;
   max-width: 360px;
   width: 100%;
 
@@ -30,36 +30,25 @@ const Container = styled.div`
     heigth: 90px;
   }
 
-  .info-client {
-    padding-top: 16px;
-  }
-
-  .info {
-    margin-bottom: 5px;
-  }
-
-  button {
+  .button {
     width: 100%;
     height: 40px;
     margin-top: 16px;
-    background: #e02041;
+    background: #aeea00;
     border: 0;
     border-radius: 8px;
-    color: #fff;
+    color: #30334a;
     font-weight: 700;
     display: inline-block;
     text-align: center;
     text-decoration: none;
     font-size: 15px;
     transition: filter 0.2s;
+    line-height: 40px;
   }
 
-  button:hover {
+  .button:hover {
     filter: brightness(85%);
-  }
-
-  .content {
-    overflow: auto;
   }
 `;
 
