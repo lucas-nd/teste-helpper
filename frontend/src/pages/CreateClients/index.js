@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form } from "./styles";
+import { Container } from "./styles";
 import brandImg from "../../assets/helpper-brand.png";
 import api from "../../services/api";
 
@@ -43,7 +43,7 @@ export default function CreateClients() {
 
   return (
     <div className="page">
-      <Form>
+      <Container>
         <div className="header">
           <h1>
             Bem-Vindo, <br /> Helpper
@@ -117,7 +117,7 @@ export default function CreateClients() {
             <button type="submit">Cadastrar</button>
           </form>
         </div>
-      </Form>
+      </Container>
     </div>
   );
 }

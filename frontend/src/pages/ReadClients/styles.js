@@ -7,7 +7,7 @@ const Container = styled.div`
   padding: 42px;
 
   height: 500px;
-  max-width: 360px;
+  max-width: 450px;
   width: 100%;
 
   background-color: #fff;
@@ -30,44 +30,22 @@ const Container = styled.div`
     heigth: 90px;
   }
 
-  input {
-    margin-top: 8px;
+  .info-client {
+    padding-top: 16px;
   }
 
-  form input {
-    width: 100%;
-    height: 30px;
-    color: #333;
-    border: 1px solid #dcdce6;
-    border-radius: 8px;
-    padding: 0 24px;
-  }
-
-  .input-group {
-    margin-top: 8px;
-  }
-
-  .input-group p {
-    color: #30334a;
-  }
-
-  .input-group input {
-    width: 45%;
-  }
-
-  .input-line {
-    display: flex;
-    justify-content: space-between;
+  .info {
+    margin-bottom: 5px;
   }
 
   button {
     width: 100%;
     height: 40px;
     margin-top: 16px;
-    background: #aeea00;
+    background: #e02041;
     border: 0;
     border-radius: 8px;
-    color: #30334a;
+    color: #fff;
     font-weight: 700;
     display: inline-block;
     text-align: center;
@@ -78,6 +56,10 @@ const Container = styled.div`
 
   button:hover {
     filter: brightness(85%);
+  }
+
+  .content {
+    overflow: auto;
   }
 `;
 
