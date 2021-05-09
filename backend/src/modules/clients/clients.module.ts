@@ -4,7 +4,6 @@ import { ClientsController } from './controllers/clients.controller';
 import Address from './entities/Address';
 import Client from './entities/Client';
 import Phone from './entities/Phone';
-import { ClientsService } from './services/clients.service';
 import { CreateClientService } from './services/create-client.service';
 import { DeleteClientService } from './services/delete-client.service';
 import { GetAllClientsService } from './services/get-all-clients.service';
@@ -12,11 +11,6 @@ import { GetAllClientsService } from './services/get-all-clients.service';
 @Module({
   imports: [TypeOrmModule.forFeature([Client, Address, Phone])],
   controllers: [ClientsController],
-  providers: [
-    ClientsService,
-    CreateClientService,
-    GetAllClientsService,
-    DeleteClientService,
-  ],
+  providers: [CreateClientService, GetAllClientsService, DeleteClientService],
 })
 export class ClientsModule {}
