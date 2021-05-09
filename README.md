@@ -9,6 +9,7 @@ O frontend foi desenvolvido utilizando as seguintes tecnologias:
 5. Axios
 6. Formik
 7. Yup
+8. Toastify
 
 O backend foi desenvolvido utilizando as seguintes tecnologias:
 1. Typescript
