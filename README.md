@@ -7,6 +7,8 @@ O frontend foi desenvolvido utilizando as seguintes tecnologias:
 3. React Router Dom
 4. Styled-Components
 5. Axios
+6. Formik
+7. Yup
 
 O backend foi desenvolvido utilizando as seguintes tecnologias:
 1. Typescript

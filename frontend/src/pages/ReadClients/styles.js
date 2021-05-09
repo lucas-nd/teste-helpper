@@ -6,7 +6,7 @@ const Container = styled.div`
 
   padding: 42px;
 
-  height: 500px;
+  height: 550px;
   max-width: 360px;
   width: 100%;
 

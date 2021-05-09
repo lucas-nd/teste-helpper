@@ -1,38 +1,28 @@
-import React, { useState } from "react";
+import React from "react";
 import { Container } from "./styles";
 import brandImg from "../../assets/helpper-brand.png";
 import api from "../../services/api";
 import { useHistory } from "react-router-dom";
 
-export default function CreateClients() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [cpfCnpj, setCpfCnpj] = useState("");
-  const [phone, setPhone] = useState("");
-  const [cep, setCep] = useState("");
-  const [logradouro, setLogradouro] = useState("");
-  const [number, setNumber] = useState("");
-  const [district, setDistrict] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
+export default function CreateClients() {
   const history = useHistory();
 
-  async function handleCreateClient(e) {
-    e.preventDefault();
-
+  async function handleCreateClient(values) {
     const data = {
-      name,
-      email,
-      cpfCnpj,
-      phone: { number: phone },
+      name: values.name,
+      email: values.email,
+      cpfCnpj: values.cpfCnpj,
+      phone: { number: values.phone },
       address: {
-        cep,
-        logradouro,
-        number,
-        district,
-        city,
-        state,
+        cep: values.cep,
+        logradouro: values.logradouro,
+        number: values.number,
+        district: values.district,
+        city: values.city,
+        state: values.state,
       },
     };
 
@@ -53,71 +43,158 @@ export default function CreateClients() {
           <img src={brandImg} alt=""></img>
         </div>
         <div className="content">
-          <form onSubmit={handleCreateClient}>
-            <input
-              placeholder="Nome do cliente"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-            <input
-              type="email"
-              placeholder="E-mail do cliente"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-              placeholder="CPF ou CNPJ do cliente"
-              value={cpfCnpj}
-              onChange={(e) => setCpfCnpj(e.target.value)}
-            />
-            <input
-              placeholder="Telefone do cliente"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-            />
+          <Formik
+            initialValues={{
+              name: "",
+              email: "",
+              cpfCnpj: "",
+              phone: "",
+              cep: "",
+              logradouro: "",
+              number: "",
+              district: "",
+              city: "",
+              state: "",
+            }}
+            validationSchema={Yup.object({
+              name: Yup.string()
+                .min(3, "O nome precisa possuir mais de 3 caracteres")
+                .required("Precisamos dessa informação."),
+              email: Yup.string()
+                .email("Email inválido")
+                .required("Precisamos dessa informação."),
+              cpfCnpj: Yup.string()
+                .min(9, "Mínimo 9 digítos, informe apenas os digítos")
+                .max(14, "Máximo de 14 digítos, informe apenas os digítos")
+                .required("Precisamos dessa informação."),
+              phone: Yup.string()
+                .min(11, "Mínimo 11 digítos, informe apenas os digítos")
+                .max(11, "Máximo de 11 digítos, informe apenas os digítos")
+                .required("Precisamos dessa informação."),
+              cep: Yup.string()
+                .min(8, "Mínimo 8 digítos, informe apenas os digítos")
+                .max(8, "Máximo de 8 digítos, informe apenas os digítos")
+                .required("Precisamos dessa informação."),
+              logradouro: Yup.string()
+                .min(3, "O nome precisa possuir mais de 3 caracteres")
+                .required("Precisamos dessa informação."),
+              number: Yup.string()
+                .min(1, "O nome precisa possuir mais de 3 caracteres")
+                .required("Precisamos dessa informação."),
+              district: Yup.string()
+                .min(3, "O nome precisa possuir mais de 3 caracteres")
+                .required("Precisamos dessa informação."),
+              city: Yup.string()
+                .min(3, "O nome precisa possuir mais de 3 caracteres")
+                .required("Precisamos dessa informação."),
+              state: Yup.string()
+                .min(3, "O nome precisa possuir mais de 3 caracteres")
+                .required("Precisamos dessa informação."),
+            })}
+            onSubmit={(values) => {
+              handleCreateClient(values);
+            }}
+          >
+            {(props) => (
+              <Form className="form">
+                <div className="form-group">
+                  <Field
+                    id="name"
+                    name="name"
+                    type="text"
+                    placeholder="Nome do cliente"
+                  />
+                  <ErrorMessage component="p" className="error" name="name" />
+                </div>
+                <Field
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="E-mail do cliente"
+                />
+                <ErrorMessage component="p" className="error" name="email" />
+                <Field
+                  id="cpfCnpj"
+                  name="cpfCnpj"
+                  type="text"
+                  placeholder="CPF ou CNPJ do cliente"
+                />
+                <ErrorMessage component="p" className="error" name="cpfCnpj" />
+                <Field
+                  id="phone"
+                  name="phone"
+                  type="text"
+                  placeholder="Telefone do cliente"
+                />
+                <ErrorMessage component="p" className="error" name="phone" />
 
-            <div className="input-group">
-              <p>Endereço do cliente</p>
-              <div className="input-line">
-                <input
-                  placeholder="CEP"
-                  value={cep}
-                  onChange={(e) => setCep(e.target.value)}
-                />
-                <input
-                  placeholder="Logradouro"
-                  value={logradouro}
-                  onChange={(e) => setLogradouro(e.target.value)}
-                />
-              </div>
-              <div className="input-line">
-                <input
-                  placeholder="Número"
-                  value={number}
-                  onChange={(e) => setNumber(e.target.value)}
-                />
-                <input
-                  placeholder="Bairro"
-                  value={district}
-                  onChange={(e) => setDistrict(e.target.value)}
-                />
-              </div>
-              <div className="input-line">
-                <input
-                  placeholder="Cidade"
-                  value={city}
-                  onChange={(e) => setCity(e.target.value)}
-                />
-                <input
-                  placeholder="Estado"
-                  value={state}
-                  onChange={(e) => setState(e.target.value)}
-                />
-              </div>
-            </div>
+                <div className="input-group">
+                  <p>Endereço do cliente</p>
+                  <div className="input-line">
+                    <Field id="cep" name="cep" type="text" placeholder="CEP" />
+                    <ErrorMessage component="p" className="error" name="cep" />
+                    <Field
+                      id="logradouro"
+                      name="logradouro"
+                      type="text"
+                      placeholder="Logradouro"
+                    />
+                    <ErrorMessage
+                      component="p"
+                      className="error"
+                      name="logradouro"
+                    />
+                  </div>
+                  <div className="input-line">
+                    <Field
+                      id="number"
+                      name="number"
+                      type="text"
+                      placeholder="Número"
+                    />
+                    <ErrorMessage
+                      component="p"
+                      className="error"
+                      name="number"
+                    />
+                    <Field
+                      id="district"
+                      name="district"
+                      type="text"
+                      placeholder="Bairro"
+                    />
+                    <ErrorMessage
+                      component="p"
+                      className="error"
+                      name="district"
+                    />
+                  </div>
+                  <div className="input-line">
+                    <Field
+                      id="city"
+                      name="city"
+                      type="text"
+                      placeholder="Cidade"
+                    />
+                    <ErrorMessage component="p" className="error" name="city" />
+                    <Field
+                      id="state"
+                      name="state"
+                      type="text"
+                      placeholder="Estado"
+                    />
+                    <ErrorMessage
+                      component="p"
+                      className="error"
+                      name="state"
+                    />
+                  </div>
+                </div>
 
-            <button type="submit">Cadastrar</button>
-          </form>
+                <button type="submit">Cadastrar</button>
+              </Form>
+            )}
+          </Formik>
         </div>
       </Container>
     </div>
