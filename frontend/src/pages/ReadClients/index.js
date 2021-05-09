@@ -2,15 +2,33 @@ import React, { useEffect, useState } from "react";
 import { Container } from "./styles";
 import brandImg from "../../assets/helpper-brand.png";
 import api from "../../services/api";
+import { useHistory } from "react-router-dom";
 
 export default function ReadClients() {
   const [clients, setClients] = useState([]);
+
+  const history = useHistory();
 
   useEffect(() => {
     api.get("").then((response) => {
       setClients(response.data);
     });
   }, []);
+
+  async function handleDeleteClient(id) {
+    try {
+      await api.delete("", {
+        data: {
+          id: id,
+        },
+      });
+
+      alert("Cliente deletado com sucesso!");
+      history.push("/");
+    } catch (err) {
+      alert("Erro ao deletar caso, tente novamente");
+    }
+  }
 
   return (
     <div className="page">
@@ -60,7 +78,9 @@ export default function ReadClients() {
                   </div>
                 </div>
               ))}
-              <button>Deletar</button>
+              <button onClick={() => handleDeleteClient(client.id)}>
+                Deletar
+              </button>
             </div>
           ))}
         </div>
