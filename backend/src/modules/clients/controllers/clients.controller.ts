@@ -1,10 +1,14 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import ICreateClientDTO from '../dtos/ICreateClientDTO';
 import { CreateClientService } from '../services/create-client.service';
+import { GetAllClientsService } from '../services/get-all-clients.service';
 
 @Controller()
 export class ClientsController {
-  constructor(private createClientService: CreateClientService) {}
+  constructor(
+    private createClientService: CreateClientService,
+    private getAllClientsService: GetAllClientsService,
+  ) {}
 
   @Post()
   createClient(
@@ -20,5 +24,11 @@ export class ClientsController {
     });
 
     return client;
+  }
+
+  @Get()
+  getAllClients() {
+    const data = this.getAllClientsService.execute();
+    return data;
   }
 }
