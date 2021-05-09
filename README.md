@@ -16,6 +16,11 @@ O backend foi desenvolvido utilizando as seguintes tecnologias:
 
 Para a persistência de dados foi utilizado o PostgreSQL.
 
+Para o versionamento dos dados foi utilizado as seguintes tecnologias/técnicas:
+1. Git
+2. GitHub
+3. GitFlow
+
 **Instruções de execução:**
 1. Crie um novo banco de dados
 2. Navegue até o seguinte diretório: ./backend
