@@ -7,6 +7,9 @@ import { useHistory } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
+
 export default function CreateClients() {
   const history = useHistory();
 
@@ -28,15 +31,18 @@ export default function CreateClients() {
 
     try {
       await api.post("", data);
-      alert("Cliente inserido com sucesso.");
-      history.push("/");
+      toast.success("Cliente inserido com sucesso.");
+      setTimeout(() => history.push("/"), 5000);
     } catch (err) {
-      alert("Não foi possivel inserir o cliente.");
+      toast.error(
+        "Não foi possivel inserir o cliente, o email já está em uso."
+      );
     }
   }
 
   return (
     <div className="page">
+      <ToastContainer />
       <Container>
         <div className="header">
           <h1>Cadastrar</h1>
