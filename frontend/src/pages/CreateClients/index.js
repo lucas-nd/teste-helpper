@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Container } from "./styles";
 import brandImg from "../../assets/helpper-brand.png";
 import api from "../../services/api";
+import { useHistory } from "react-router-dom";
 
 export default function CreateClients() {
   const [name, setName] = useState("");
@@ -14,6 +15,8 @@ export default function CreateClients() {
   const [district, setDistrict] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
+
+  const history = useHistory();
 
   async function handleCreateClient(e) {
     e.preventDefault();
@@ -36,6 +39,7 @@ export default function CreateClients() {
     try {
       await api.post("", data);
       alert("Cliente inserido com sucesso.");
+      history.push("/");
     } catch (err) {
       alert("Não foi possivel inserir o cliente.");
     }
@@ -45,9 +49,7 @@ export default function CreateClients() {
     <div className="page">
       <Container>
         <div className="header">
-          <h1>
-            Bem-Vindo, <br /> Helpper
-          </h1>
+          <h1>Cadastrar</h1>
           <img src={brandImg} alt=""></img>
         </div>
         <div className="content">
