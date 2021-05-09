@@ -6,7 +6,7 @@ const Container = styled.div`
 
   padding: 42px;
 
-  height: 500px;
+  height: 550px;
   max-width: 360px;
   width: 100%;
 
@@ -78,6 +78,19 @@ const Container = styled.div`
 
   button:hover {
     filter: brightness(85%);
+  }
+
+  .content {
+    height: 100%;
+    overflow: auto;
+  }
+
+  .error {
+    color: red;
+  }
+
+  .input-line .error {
+    color: red;
   }
 `;
 
